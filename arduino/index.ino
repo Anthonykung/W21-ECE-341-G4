@@ -21,14 +21,14 @@
 /* Add Libraries */
 
 /* Global Constants */
-const int LED1 = 13;
-const int LED2 = 12;
-const int LED3 = 11;
-const int LED4 = 10;
-const int LED5 = 9;
+const int LED1 = 3;
+const int LED2 = 4;
+const int LED3 = 5;
+const int LED4 = 6;
+const int LED5 = 7;
 const int LED6 = 8;
-const int LED7 = 7;
-const int LED8 = 6;
+const int LED7 = 9;
+const int LED8 = 10;
 const int loopTime = 500; /* miliseconds */
 const int MCIN = A0;
 
