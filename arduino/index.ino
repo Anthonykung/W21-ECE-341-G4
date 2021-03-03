@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 ECE 341 Winter 2021 Section 3 Group 4
+ * Copyright (c) 2021 ECE 341 Winter 2021 Section 3 Group 4
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
