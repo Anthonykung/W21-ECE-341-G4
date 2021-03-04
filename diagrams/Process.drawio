@@ -1,35 +1,46 @@
-<mxfile host="65bd71144e" modified="2021-02-28T00:11:37.776Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.53.2 Chrome/87.0.4280.141 Electron/11.2.1 Safari/537.36" version="14.2.4" etag="KRY1_jIGXu5Rz20hlDwd" type="embed">
+<mxfile host="65bd71144e" modified="2021-03-04T19:01:20.269Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.54.0 Chrome/87.0.4280.141 Electron/11.3.0 Safari/537.36" etag="2peYo_Dvuy8fSMtcdtEH" version="14.2.4" type="embed">
     <diagram id="dQCk0N-GBEVGD479YCir" name="Page-1">
-        <mxGraphModel dx="829" dy="676" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+        <mxGraphModel dx="1089" dy="790" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=18;strokeColor=#FFFFFF;" edge="1" parent="1" source="2" target="3">
+                <mxCell id="8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=18;strokeColor=#FFFFFF;" parent="1" target="4" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="610" y="425" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=18;strokeColor=#FFFFFF;" parent="1" source="4" target="5" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="2" value="Microphone" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;fontColor=#FFFFFF;fillColor=none;strokeColor=#FFFFFF;" vertex="1" parent="1">
-                    <mxGeometry x="190" y="385" width="120" height="80" as="geometry"/>
-                </mxCell>
-                <mxCell id="8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=18;strokeColor=#FFFFFF;" edge="1" parent="1" source="3" target="4">
+                <mxCell id="10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=18;strokeColor=#FFFFFF;" parent="1" source="4" target="6" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="3" value="Filter" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;strokeColor=#FFFFFF;fillColor=none;fontColor=#FFFFFF;" vertex="1" parent="1">
-                    <mxGeometry x="390" y="385" width="120" height="80" as="geometry"/>
+                <mxCell id="4" value="Arduino" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;strokeColor=#FFFFFF;fillColor=none;fontColor=#FFFFFF;" parent="1" vertex="1">
+                    <mxGeometry x="690" y="385" width="120" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=18;strokeColor=#FFFFFF;" edge="1" parent="1" source="4" target="5">
+                <mxCell id="5" value="LEDs" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;fontColor=#FFFFFF;fillColor=none;strokeColor=#FFFFFF;" parent="1" vertex="1">
+                    <mxGeometry x="890" y="305" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Matlab" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;fontColor=#FFFFFF;fillColor=none;strokeColor=#FFFFFF;" parent="1" vertex="1">
+                    <mxGeometry x="890" y="465" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=18;strokeColor=#FFFFFF;" edge="1" parent="1" source="12" target="13">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=18;strokeColor=#FFFFFF;" edge="1" parent="1" source="4" target="6">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="12" value="Microphone" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;fontColor=#FFFFFF;fillColor=none;strokeColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="90" y="385" width="120" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="4" value="Arduino" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;strokeColor=#FFFFFF;fillColor=none;fontColor=#FFFFFF;" vertex="1" parent="1">
-                    <mxGeometry x="590" y="385" width="120" height="80" as="geometry"/>
+                <mxCell id="13" value="Amplifier" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;strokeColor=#FFFFFF;fillColor=none;fontColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="290" y="385" width="120" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="5" value="LEDs" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;fontColor=#FFFFFF;fillColor=none;strokeColor=#FFFFFF;" vertex="1" parent="1">
-                    <mxGeometry x="790" y="305" width="120" height="80" as="geometry"/>
+                <mxCell id="14" value="Filter" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;strokeColor=#FFFFFF;fillColor=none;fontColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="490" y="385" width="120" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="6" value="Matlab" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;fontColor=#FFFFFF;fillColor=none;strokeColor=#FFFFFF;" vertex="1" parent="1">
-                    <mxGeometry x="790" y="465" width="120" height="80" as="geometry"/>
+                <mxCell id="15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=18;strokeColor=#FFFFFF;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="410" y="425" as="sourcePoint"/>
+                        <mxPoint x="490" y="425" as="targetPoint"/>
+                    </mxGeometry>
                 </mxCell>
             </root>
         </mxGraphModel>

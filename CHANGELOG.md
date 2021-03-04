@@ -1,5 +1,10 @@
 # ECE 341 Winter 2021 Section 3 Group 4 - CHANGE LOG
 
+## v0.0.6
+
+- Updated Process diagram
+- Added matlab
+
 ## v0.0.5
 
 - Updated README.md
