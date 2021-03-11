@@ -31,6 +31,8 @@ git commit {{ Current File }} -m "Update at {{ Timestamp }}"
 
 ## Installation
 
+Install `arduinoFFT` from the Arduino Library Manager.
+
 ## Usage
 
 ## Docs

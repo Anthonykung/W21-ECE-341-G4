@@ -15,3 +15,6 @@
 % @file   index.m
 % @author Anthony Kung <hi@anth.dev>
 % @date   Created on March 4 2021, 10:54 AM
+
+% Initialize
+a = arduino(‘com5’, ‘nano’);

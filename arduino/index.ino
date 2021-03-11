@@ -111,8 +111,8 @@ void loop() {
     allOff();
     digitalWrite(LED8, HIGH);
   }
-  else {
-    allOn();
+  else if (FFT > 550) {
+    allOff();
   }
 }
 
@@ -179,6 +179,7 @@ void sampling() {
   for (int i = 0; i < numSams; i++) {
     curry = micros();
     sams[i] = analogRead(MCIN);
+    Serial.print(sams[i]);
   }
 }
 
