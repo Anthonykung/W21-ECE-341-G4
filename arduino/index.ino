@@ -179,7 +179,8 @@ void sampling() {
   for (int i = 0; i < numSams; i++) {
     curry = micros();
     sams[i] = analogRead(MCIN);
-    Serial.print(sams[i]);
+    Serial.println(curry);
+    Serial.println(sams[i]);
   }
 }
 
@@ -201,5 +202,6 @@ double fftFun() {
   FFT.Compute(sams, fake, numSams, FFT_FORWARD);
   FFT.ComplexToMagnitude(sams, fake, numSams);
   double freq = FFT.MajorPeak(sams, numSams, samFreq);
+  freq = freq * 10000;
   return freq;
 }
