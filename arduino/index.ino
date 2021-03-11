@@ -65,7 +65,6 @@ void setup() {
 
 /* Main Function */
 void loop() {
-  double MCVAL = analogRead(MCIN);
   sampling();
   double FFT = fftFun();
   if (FFT < 248) {
@@ -179,8 +178,11 @@ void sampling() {
   for (int i = 0; i < numSams; i++) {
     curry = micros();
     sams[i] = analogRead(MCIN);
-    Serial.println(curry);
-    Serial.println(sams[i]);
+    while(micros() < (curry + samFreq)){
+      /* Do Nothing During This Time */
+      /* This is to make sure there is a fixed */
+      /* Sampling frequency for FFT to use */
+    }
   }
 }
 
@@ -202,6 +204,8 @@ double fftFun() {
   FFT.Compute(sams, fake, numSams, FFT_FORWARD);
   FFT.ComplexToMagnitude(sams, fake, numSams);
   double freq = FFT.MajorPeak(sams, numSams, samFreq);
-  freq = freq * 10000;
+  Serial.print(micros());
+  Serial.print(" ");
+  Serial.println(freq);
   return freq;
 }
