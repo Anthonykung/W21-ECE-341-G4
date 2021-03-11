@@ -19,6 +19,7 @@
  */
 
 /* Add Libraries */
+#include "arduinoFFT.h"
 
 /* Global Constants */
 const int LED1 = 3;
@@ -31,60 +32,80 @@ const int LED7 = 9;
 const int LED8 = 10;
 const int loopTime = 500; /* miliseconds */
 const int MCIN = A0;
+const int numSams = 128; /* Number of Samples */
+const int samFreq = 10500; /* Sampling Frequency (Hz) */
 
 /* Global Variables */
+int curry = 0;
+double sams[numSams];
+double fake[numSams];
+arduinoFFT FFT = arduinoFFT();
 
 /* Declare Functions */
 void allOff();
 void allOn();
 void testLoop();
+void sampling();
+void deepFake();
+double fftFun();
 
 /* Initialization */
 void setup() {
+  /* Set Prescaler To 16 */
+  /* 16MHz / 16 = 1MHz ADC rate */
+  sbi(ADCSRA, ADPS2); /* Set Bit in I/O Register */
+  cbi(ADCSRA, ADPS1); /* Clear Bit in I/O Register */
+  cbi(ADCSRA, ADPS0); /* Prescale 16: ADPS2 1 ADPS1 0 ADPS0 0*/
   Serial.begin(115200);
+  deepFake();
   allOff();
 }
 
 /* Main Function */
 void loop() {
   double MCVAL = analogRead(MCIN);
-  double PWM = map(MCVAL, 0, 1023, 0, 255);
-  Serial.print("MCVAL: ");
-  Serial.println(MCVAL);
-  Serial.print("PWM: ");
-  Serial.println(PWM);
-  if (MCVAL < 255) {
+  sampling();
+  double FFT = fftFun();
+  if (FFT < 248) {
     allOff();
   }
-  else if (MCVAL > 255 && MCVAL <= 351) {
+  /* C4 261.6256 */
+  else if (FFT > 248 && FFT <= 275) {
     allOff();
     digitalWrite(LED1, HIGH);
   }
-  else if (MCVAL > 351 && MCVAL <= 447) {
+  /* D4 293.6648 */
+  else if (FFT > 278 && FFT <= 309) {
     allOff();
     digitalWrite(LED2, HIGH);
   }
-  else if (MCVAL > 447 && MCVAL <= 543) {
+  /* E4 329.6276 */
+  else if (FFT > 313 && FFT <= 338) {
     allOff();
     digitalWrite(LED3, HIGH);
   }
-  else if (MCVAL > 543 && MCVAL <= 639) {
+  /* F4 349.2282 */
+  else if (FFT > 338 && FFT <= 367) {
     allOff();
     digitalWrite(LED4, HIGH);
   }
-  else if (MCVAL > 639 && MCVAL <= 735) {
+  /* G4 391.9954 */
+  else if (FFT > 372 && FFT <= 412) {
     allOff();
     digitalWrite(LED5, HIGH);
   }
-  else if (MCVAL > 735 && MCVAL <= 831) {
+  /* A4 440.0000 */
+  else if (FFT > 418 && FFT <= 462) {
     allOff();
     digitalWrite(LED6, HIGH);
   }
-  else if (MCVAL > 831 && MCVAL <= 927) {
+  /* B4 493.8833 */
+  else if (FFT > 469 && FFT <= 507) {
     allOff();
     digitalWrite(LED7, HIGH);
   }
-  else if (MCVAL > 927 && MCVAL <= 1023) {
+  /* C5 523.2511 */
+  else if (FFT > 507 && FFT <= 550) {
     allOff();
     digitalWrite(LED8, HIGH);
   }
@@ -140,4 +161,42 @@ void testLoop() {
   digitalWrite(LED8, HIGH);
   delay(loopTime);
   digitalWrite(LED8, LOW);
+}
+
+/**
+ * Sampling Function
+ * Required Frequency: 10.5 kHz
+ * Minimium Period: 95 us
+ * Arduino Resolution: 4 us
+ * Arduino @ 16MHz
+ * Time overflow at ~4200000000 us
+ * We are not waiting here for anything
+ * To get the maximium sampling rate
+ */
+void sampling() {
+  for (int i = 0; i < numSams; i++) {
+    curry = micros();
+    sams[i] = analogRead(MCIN);
+  }
+}
+
+/**
+ * Set all imagine values to 0
+ */
+void deepFake() {
+  for (int i = 0; i < numSams; i++) {
+    fake[i] = 0;
+  }
+}
+
+/**
+ * FFT Function
+ * Use the FFT library
+ */
+double fftFun() {
+  FFT.Windowing(sams, numSams, FFT_WIN_TYP_HAMMING, FFT_FORWARD);
+  FFT.Compute(sams, fake, numSams, FFT_FORWARD);
+  FFT.ComplexToMagnitude(sams, fake, numSams);
+  double freq = FFT.MajorPeak(sams, numSams, samFreq);
+  return freq;
 }

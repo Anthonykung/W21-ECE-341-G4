@@ -45,12 +45,11 @@ No known issues
 
 ## Release Notes
 
-## v0.0.5
+## v0.0.7
 
-- Updated README.md
-- Added video example of proof of concept
-- Added CHANGELOG.md
-- Fixed incorrect year in Arduino header
+- Updated Arduino FFT
+- FFT theoretically functional
+- Added Arduino Prescaler Docs
 
 See [CHANGELOG.md](./CHANGELOG.md) for more
 
