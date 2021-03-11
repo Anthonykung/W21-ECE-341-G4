@@ -21,6 +21,13 @@
 /* Add Libraries */
 #include "arduinoFFT.h"
 
+
+/* Set Prescaler To 16 */
+/* 16MHz / 16 = 1MHz ADC rate */
+#define sbi(ADCSRA, ADPS2); /* Set Bit in I/O Register */
+#define cbi(ADCSRA, ADPS1); /* Clear Bit in I/O Register */
+#define cbi(ADCSRA, ADPS0); /* Prescale 16: ADPS2 1 ADPS1 0 ADPS0 0*/
+
 /* Global Constants */
 const int LED1 = 3;
 const int LED2 = 4;
@@ -51,11 +58,6 @@ double fftFun();
 
 /* Initialization */
 void setup() {
-  /* Set Prescaler To 16 */
-  /* 16MHz / 16 = 1MHz ADC rate */
-  sbi(ADCSRA, ADPS2); /* Set Bit in I/O Register */
-  cbi(ADCSRA, ADPS1); /* Clear Bit in I/O Register */
-  cbi(ADCSRA, ADPS0); /* Prescale 16: ADPS2 1 ADPS1 0 ADPS0 0*/
   Serial.begin(115200);
   deepFake();
   allOff();

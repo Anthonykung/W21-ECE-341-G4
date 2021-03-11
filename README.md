@@ -45,11 +45,9 @@ No known issues
 
 ## Release Notes
 
-## v0.0.7
+## v0.0.8
 
-- Updated Arduino FFT
-- FFT theoretically functional
-- Added Arduino Prescaler Docs
+- Fixed sbi and cbi undeclared error
 
 See [CHANGELOG.md](./CHANGELOG.md) for more
 

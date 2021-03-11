@@ -1,10 +1,15 @@
 # ECE 341 Winter 2021 Section 3 Group 4 - CHANGE LOG
 
+## v0.0.8
+
+- Fixed sbi and cbi undeclared error
+
 ## v0.0.7
 
 - Updated Arduino FFT
 - FFT theoretically functional
 - Added Arduino Prescaler Docs
+
 ## v0.0.6
 
 - Updated Process diagram
