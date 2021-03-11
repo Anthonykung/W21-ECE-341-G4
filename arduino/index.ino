@@ -207,19 +207,19 @@ void deepFake() {
  */
 double fftFun() {
   Serial.println("Data:");
-  PrintVector(vReal, samples, SCL_TIME);
+  PrintVector(sams, numSams, SCL_TIME);
   
   FFT.Windowing(sams, numSams, FFT_WIN_TYP_HAMMING, FFT_FORWARD);
   Serial.println("Weighed data:");
-  PrintVector(vReal, samples, SCL_TIME);
+  PrintVector(sams, numSams, SCL_TIME);
   
   FFT.Compute(sams, fake, numSams, FFT_FORWARD);
   Serial.println("Computed Real values:");
-  PrintVector(vReal, samples, SCL_INDEX);
+  PrintVector(sams, numSams, SCL_INDEX);
   
   FFT.ComplexToMagnitude(sams, fake, numSams);
   Serial.println("Computed magnitudes:");
-  PrintVector(vReal, (samples >> 1), SCL_FREQUENCY);
+  PrintVector(sams, (numSams >> 1), SCL_FREQUENCY);
   
   double freq = FFT.MajorPeak(sams, numSams, samFreq);
   //Serial.print(micros());
@@ -241,12 +241,12 @@ void PrintVector(double *vData, uint16_t bufferSize, uint8_t scaleType)
     {
       case SCL_INDEX:
         abscissa = (i * 1.0);
- break;
+  break;
       case SCL_TIME:
-        abscissa = ((i * 1.0) / samplingFrequency);
+        abscissa = ((i * 1.0) / samFreq);
   break;
       case SCL_FREQUENCY:
-        abscissa = ((i * 1.0 * samplingFrequency) / samples);
+        abscissa = ((i * 1.0 * samFreq) / numSams);
   break;
     }
     Serial.print(abscissa, 6);
