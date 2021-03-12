@@ -184,7 +184,7 @@ void testLoop() {
 void sampling() {
   for (int i = 0; i < numSams; i++) {
     curry = micros();
-    sams[i] = (analogRead(MCIN) - 512)/8;
+    sams[i] = analogRead(MCIN);
     while(micros() < (curry + 95)){
       /* Do Nothing During This Time */
       /* This is to make sure there is a fixed */
@@ -225,11 +225,15 @@ double fftFun() {
   Serial.println("Computed magnitudes:");
   PrintVector(sams, (numSams >> 1), SCL_FREQUENCY);
 
-  double freq = FFT.MajorPeak(sams, numSams, samFreq);
+  double freq;
+  double magn;
+  FFT.MajorPeak(sams, numSams, samFreq, &freq, &magn);
   //Serial.print(micros());
-  //Serial.print(" ");
-  //Serial.println(freq);
-  matlab();
+  Serial.print("Prominent Frequency: ");
+  Serial.println(freq);
+  Serial.print("Prominent Magnitude: ");
+  Serial.println(magn);
+  //matlab();
   deepFake();
   return freq;
 }
@@ -239,7 +243,7 @@ double fftFun() {
  */
 void matlab() {
   for(int i = 0; i < (numSams / 2); i++) {
-    Serial.println((i * 1.0 * samFreq) / numSams, 1);
+    Serial.println(vData[i], 4);
   }
 }
 
