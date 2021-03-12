@@ -13,13 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * @file   index.ino
+ * @file   original.ino
  * @author Anthony Kung <hi@anth.dev>
  * @date   Created on Feburary 18 2021, 10:33 PM
  */
-
-/* Add Libraries */
-#include "arduinoFFT.h"
 
 /* Define */
 #ifndef cbi
@@ -28,11 +25,6 @@
 #ifndef sbi
 #define sbi(sfr, bit) (_SFR_BYTE(sfr) |= _BV(bit))
 #endif
-
-#define SCL_INDEX 0x00
-#define SCL_TIME 0x01
-#define SCL_FREQUENCY 0x02
-#define SCL_PLOT 0x03
 
 /* Global Constants */
 const int LED1 = 3;
@@ -59,10 +51,10 @@ void allOff();
 void allOn();
 void testLoop();
 void sampling();
-void deepFake();
+void sampling2();
 double fftFun();
 void matlab();
-void PrintVector(double *vData, uint16_t bufferSize, uint8_t scaleType);
+void ctrl();
 
 /* Initialization */
 void setup() {
@@ -72,13 +64,15 @@ void setup() {
   cbi(ADCSRA, ADPS1); /* Clear Bit in I/O Register */
   cbi(ADCSRA, ADPS0); /* Prescale 16: ADPS2 1 ADPS1 0 ADPS0 0*/
   Serial.begin(115200);
-  deepFake();
   allOff();
 }
 
 /* Main Function */
 void loop() {
-  sampling();
+  sampling2();
+}
+
+void ctrl() {
   double FFT = fftFun();
   if (FFT < 248) {
     allOff();
@@ -184,13 +178,15 @@ void testLoop() {
  * Arduino Resolution: 4 us
  * Arduino @ 16MHz
  * Time overflow at ~4200000000 us
- * We are not waiting here for anything
- * To get the maximium sampling rate
+ * We wait for 95 us before taking
+ * another sample from this
+ * DC offset at 1V 1024 / 5 = 204
  */
 void sampling() {
   for (int i = 0; i < numSams; i++) {
     curry = micros();
     sams[i] = (analogRead(MCIN) - 204);
+    fake[i] = 0.0;
     while(micros() < (curry + 95)){
       /* Do Nothing During This Time */
       /* This is to make sure there is a fixed */
@@ -202,43 +198,15 @@ void sampling() {
 }
 
 /**
- * Set all imagine values to 0
+ * Sampling Function
+ * For Matlab
  */
-void deepFake() {
-  for (int i = 0; i < numSams; i++) {
-    sams[i] = 0.0;
-    fake[i] = 0.0;
+void sampling2() {
+  curry = micros();
+  Serial.println(analogRead(MCIN));
+  while(micros() < (curry + 95)){
+    /* Do Nothing */
   }
-}
-
-/**
- * FFT Function
- * Use the FFT library
- */
-double fftFun() {
-  //Serial.println("Data:");
-  //PrintVector(sams, numSams, SCL_TIME);
-
-  FFT.Windowing(sams, numSams, FFT_WIN_TYP_HAMMING, FFT_FORWARD);
-  //Serial.println("Weighed data:");
-  //PrintVector(sams, numSams, SCL_TIME);
-
-  FFT.Compute(sams, fake, numSams, FFT_FORWARD);
-  //Serial.println("Computed Real values:");
-  //PrintVector(sams, numSams, SCL_INDEX);
-
-  FFT.ComplexToMagnitude(sams, fake, numSams);
-  //Serial.println("Computed magnitudes:");
-  //PrintVector(sams, (numSams >> 1), SCL_FREQUENCY);
-
-  double freq = FFT.MajorPeak(sams, numSams, samFreq);
-  //Serial.print(micros());
-  //Serial.print("Prominent Frequency: ");
-  Serial.println(freq);
-  //Serial.println(magn);
-  //matlab(freq);
-  deepFake();
-  return freq;
 }
 
 /**
@@ -246,40 +214,6 @@ double fftFun() {
  */
 void matlab(double freq) {
   Serial.print(freq);
-  //Serial.println(curry);
-}
-
-/**
- * Debug
- */
-void debug(double freq, double magn);
-
-/**
- * Debug Printout
- */
-void PrintVector(double *vData, uint16_t bufferSize, uint8_t scaleType)
-{
-  for (uint16_t i = 0; i < bufferSize; i++)
-  {
-    double abscissa;
-    /* Print abscissa value */
-    switch (scaleType)
-    {
-      case SCL_INDEX:
-        abscissa = (i * 1.0);
-  break;
-      case SCL_TIME:
-        abscissa = ((i * 1.0) / samFreq);
-  break;
-      case SCL_FREQUENCY:
-        abscissa = ((i * 1.0 * samFreq) / numSams);
-  break;
-    }
-    Serial.print(abscissa, 6);
-    if(scaleType==SCL_FREQUENCY)
-      Serial.print("Hz");
-    Serial.print(" ");
-    Serial.println(vData[i], 4);
-  }
-  Serial.println();
+  Serial.write(13);
+  Serial.write(10);
 }

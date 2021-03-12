@@ -21,38 +21,33 @@
 
 % Global Constants
 global LED1;
+LED1 = 3;
 global LED2;
+LED2 = 4;
 global LED3;
+LED3 = 5;
 global LED4;
+LED4 = 6;
 global LED5;
+LED5 = 7;
 global LED6;
+LED6 = 8;
 global LED7;
+LED7 = 9;
 global LED8;
+LED8 = 10;
 global numSams;
+numSams = 128;
 
 % Global Variables
-global sams;
-global freq;
-global time;
-global loc;
-global a;
-
-% Initialize
-clear
-clc
-LED1 = 3;
-LED2 = 4;
-LED3 = 5;
-LED4 = 6;
-LED5 = 7;
-LED6 = 8;
-LED7 = 9;
-LED8 = 10;
-numSams = 128;
 sams = zeros(numSams, 1);
 freq = zeros(numSams, 1);
 time = zeros(numSams, 1);
 loc = 1;
+
+% Initialize
+clear
+clc
 a = arduino('COM5','Nano3');
 arduinoObj = serialport("COM5", 115200);
 configureTerminator(arduinoObj,"CR/LF");
@@ -61,12 +56,6 @@ arduinoObj.UserData = struct("Data", [], "Count", 1);
 configureCallback(arduinoObj, "terminator", @readArduinoData);
 
 function readArduinoData(src, ~)
-
-  % Let The Function Know About Global
-  global sams;
-  global loc;
-  global numSams;
-
   % Create Sampling Process
 
   if loc == numSams
@@ -97,10 +86,6 @@ end
 
 
 function fftFun(data)
-  % Let The Function Know About Global
-  global freq;
-  global time;
-
   freq(time) = fft(data);
   time(end + 1) = time(end) + 95;
 
@@ -115,16 +100,6 @@ function fftFun(data)
 end
 
 function allOff()
-  % Let The Function Know About Global
-  global LED1;
-  global LED2;
-  global LED3;
-  global LED4;
-  global LED5;
-  global LED6;
-  global LED7;
-  global LED8;
-
   writeDigitalPin(a, LED1, 0);
   writeDigitalPin(a, LED2, 0);
   writeDigitalPin(a, LED3, 0);
