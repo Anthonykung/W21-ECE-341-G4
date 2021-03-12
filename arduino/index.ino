@@ -48,7 +48,7 @@ const int numSams = 128; /* Number of Samples */
 const int samFreq = 10500; /* Sampling Frequency (Hz) */
 
 /* Global Variables */
-int curry = 0;
+unsigned int curry = 0;
 double sams[numSams];
 double fake[numSams];
 arduinoFFT FFT = arduinoFFT();
@@ -208,19 +208,19 @@ void deepFake() {
 double fftFun() {
   Serial.println("Data:");
   PrintVector(sams, numSams, SCL_TIME);
-  
+
   FFT.Windowing(sams, numSams, FFT_WIN_TYP_HAMMING, FFT_FORWARD);
   Serial.println("Weighed data:");
   PrintVector(sams, numSams, SCL_TIME);
-  
+
   FFT.Compute(sams, fake, numSams, FFT_FORWARD);
   Serial.println("Computed Real values:");
   PrintVector(sams, numSams, SCL_INDEX);
-  
+
   FFT.ComplexToMagnitude(sams, fake, numSams);
   Serial.println("Computed magnitudes:");
   PrintVector(sams, (numSams >> 1), SCL_FREQUENCY);
-  
+
   double freq = FFT.MajorPeak(sams, numSams, samFreq);
   //Serial.print(micros());
   //Serial.print(" ");
