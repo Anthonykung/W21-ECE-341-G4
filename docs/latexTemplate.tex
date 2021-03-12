@@ -1,0 +1,189 @@
+% Created with <3 by Anthony Kung %
+% On January 10 for ECE 341 @ OSU %
+
+% Define Document %
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[legalpaper, margin=0.5in]{geometry}
+
+% Get Rid Of Numbering %
+% \pagenumbering{gobble} %
+
+% No Paragraph Indent %
+\setlength{\parindent}{0pt}
+
+% Images Setup %
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{float}
+
+% Define Colors %
+\usepackage[dvipsnames]{xcolor}
+\definecolor{DeepPink}{HTML}{FF1493}
+\definecolor{RoyalBlue}{HTML}{4169E1}
+\definecolor{DodgerBlue}{HTML}{1E90FF}
+\definecolor{Background}{HTML}{212121}
+
+% Color Setup %
+% Dark Theme %
+\pagecolor{Background}
+\color{white}
+
+% Font Setup %
+\usepackage{tgbonum}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{listings}
+
+% Caption Setup %
+\usepackage{caption}
+\usepackage[font={color=white},figurename=Figure]{caption}
+\captionsetup{belowskip=-40pt}
+
+% List of Figures Format %
+% \renewcommand{\listfigurename}{ %
+
+% Footer %
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rfoot{\centering\textcolor{white}{Page \thepage}}
+
+% Hyperlink Setup %
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=RoyalBlue,
+    filecolor=DeepPink,
+    urlcolor=cyan,
+    pdftitle={ECE 341 Week 1 Lab Report}, % REPLACE THIS %
+    bookmarks=true,
+    pdfpagemode=FullScreen,
+}
+
+% Preamble %
+\title{ECE 341 Week 1 Lab Report} % REPLACE THIS %
+\author{
+  Anthony Kung % REPLACE THIS %
+}
+\date{January 10, 2021} % REPLACE THIS %
+
+% Actual Document %
+\begin{document}
+
+\fontfamily{qag}\selectfont
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                            %
+%   % DOCUMENT STARTS HERE % DOCUMENT STARTS HERE % DOCUMENT STARTS HERE %   %
+%                                                                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Week 1 Lab Report % REPLACE THIS %
+\newline
+\textbf{Written by}: Anthony Kung % REPLACE THIS %
+\hfill
+\textbf{Date Performed}: January 10, 2021 % REPLACE THIS %
+
+\textbf{Instructor}:  Brandilyn Coker
+\hfill
+\textbf{T.A.}: Shane Witsell
+
+\begin{center}
+  \large\textbf{ECE 341 Week 1 Lab Report} % REPLACE THIS %
+  \\
+\end{center}
+
+\setlength{\parskip}{1em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                             %
+%  %   BEGIN YOUR REPORT   %   BEGIN YOUR REPORT   %   BEGIN YOUR REPORT   %  %
+%                                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{\textbf{\textit{Introduction of Lab Objectives and Activities}}}
+
+The introduction should include the overall lab exercise objectives (not the objective of the instructor, but of the actual exercise itself). It is not necessary to use the word ‘objective’ in all introductions. This section is about the technical work performed, not who performed the work, and so it is never written in the first person. Do not include figures or data here. This section is technical and should be written in third person. The following example shows the tone and feel of this first section.
+
+Example:
+
+The DC transient response of an RC circuit is a critical component of PSpice simulations. PSpice shall be used to simulate the circuit, and then it will be analyzed in hardware. The primary focus of the experiment will be to compare the circuit’s time-constant as a function of resistance. Multiple input frequencies will be used to analyze the circuit’s response during both transient and steady-state periods.
+
+\section{\textbf{\textit{Background and Pre-Lab}}}
+
+The pre-lab is meant to help students gain knowledge and background information necessary to starting the lab. Students should include a summary of this knowledge in this Section 2. In other words, this section should contain a summary of what concepts and skills are needed for completing this lab. This section should be at least five sentences long.
+
+\section{\textbf{\textit{Procedure}}}
+
+This section includes a description of the procedure and process for completing the lab. This section needs to include sufficient detail about the lab exercise for someone to reproduce the work without the use of the instructor-provided lab manual. This section might include multiple subsections depending on the lab. The order of sections should follow the order in which the steps were performed. The schematic from the design files should be included and described in this section (see Appendix 1 for guidance on inserting a figure, such as a schematic).
+
+The list of subsections should always be introduced with a brief paragraph – do not follow the Procedure heading with subheading A. Do not include data here; however, circuit figures are acceptable. This section is NOT a list of instructions, it is a description of WHAT WAS DONE; short lists are acceptable to specify some details, but should not be used to describe the main points.
+
+\section{\textbf{\textit{Results and Analysis}}}
+
+This section describes lab results and analysis. It should reference the schematic that was posted in Section 3.
+
+Subheadings here should match each subheading in Section 3. Each subheading should have a statement regarding the general purpose of the subsection as a short introduction. The data should be introduced following the procedures presented above. Then, it should be analyzed or discussed. It is not necessary to repeat any figures or tables that have already been included.
+
+That said, tables to summarize the findings of your lab could be introduced in this section. Table headings should be added as shown below in the Appendix.
+
+\section{\textbf{\textit{Conclusion}}}
+
+Technical conclusions developed in the work are described in this Conclusion. These conclusions focus on the technical aspects, not the educational ones. Many students see that the objective of a particular lab is to learn something. This is, of course, education and there is much value in the practical labs. However, the Conclusion of the report should concentrate on the technical findings.
+
+
+
+For example:
+
+DO NOT WRITE: “Students learned about voltage division.”
+
+DO WRITE: “The principle of voltage division was supported by these findings.”
+
+
+
+Be sure to restate the main objective(s) and discuss how/if they were achieved. Example:
+
+The principle of voltage division was supported by the findings in this lab. It was clear that the ratio of voltage on a particular series resistor to the voltage supply is the same ratio as that resistance to the sum of all series resistors.  Therefore, this principle will allow the engineer to simply conclude many circuit analyses.
+
+% END YOUR REPORT %
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  LaTex Snippets  %  LaTex Snippets  %  LaTex Snippets  %  LaTex Snippets  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%
+% Figures %
+%%%%%%%%%%%
+% ---------
+% \begin{center}
+%   \begin{figure}[H]
+%     \centering
+%     \includegraphics[scale=0.4]{Replace-Image.extension}
+%     \caption{Replace Caption}
+%   \end{figure}
+% \end{center}
+
+%%%%%%%%%
+% Table %
+%%%%%%%%%
+
+% --------------------------------------------------------- %
+% c in the bracket for center
+% l and r for left and right p for custom size like p{10cm}
+% 1 c is 1 column 2 c is two columns 3 c is 3 colums...
+% --------------------------------------------------------- %
+
+% \begin{tabular}{ c c }
+
+%   Column 1 Row 1 &
+%   Column 2 Row 1 \\
+
+%   Column 1 Row 2 &
+%   Column 2 Row 2 \\
+
+%   Column 1 Row 3 &
+%   Column 2 Row 3 \\
+
+% \end{tabular}

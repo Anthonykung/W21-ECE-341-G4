@@ -60,6 +60,7 @@ void testLoop();
 void sampling();
 void deepFake();
 double fftFun();
+void matlab();
 void PrintVector(double *vData, uint16_t bufferSize, uint8_t scaleType);
 
 /* Initialization */
@@ -211,27 +212,36 @@ void deepFake() {
 double fftFun() {
   Serial.println("Data:");
   PrintVector(sams, numSams, SCL_TIME);
-  
+
   FFT.Windowing(sams, numSams, FFT_WIN_TYP_HAMMING, FFT_FORWARD);
   Serial.println("Weighed data:");
   PrintVector(sams, numSams, SCL_TIME);
-  
+
   FFT.Compute(sams, fake, numSams, FFT_FORWARD);
   Serial.println("Computed Real values:");
   PrintVector(sams, numSams, SCL_INDEX);
-  
+
   FFT.ComplexToMagnitude(sams, fake, numSams);
   Serial.println("Computed magnitudes:");
   PrintVector(sams, (numSams >> 1), SCL_FREQUENCY);
-  
+
   double freq = FFT.MajorPeak(sams, numSams, samFreq);
-  Serial.print(micros());
-  Serial.print(" ");
-  Serial.println(freq);
+  //Serial.print(micros());
+  //Serial.print(" ");
+  //Serial.println(freq);
+  matlab();
   deepFake();
   return freq;
 }
 
+/**
+ * Matlab Serial
+ */
+void matlab() {
+  for(int i = 0; i < (numSams / 2); i++) {
+    Serial.println((i * 1.0 * samFreq) / numSams, 1);
+  }
+}
 
 
 /**
