@@ -48,7 +48,7 @@ const int numSams = 128; /* Number of Samples */
 const int samFreq = 10500; /* Sampling Frequency (Hz) */
 
 /* Global Variables */
-int curry = 0;
+unsigned int curry = 0;
 double sams[numSams];
 double fake[numSams];
 arduinoFFT FFT = arduinoFFT();
@@ -183,12 +183,14 @@ void testLoop() {
 void sampling() {
   for (int i = 0; i < numSams; i++) {
     curry = micros();
-    sams[i] = analogRead(MCIN);
-    while(micros() < (curry + samFreq)){
+    sams[i] = (analogRead(MCIN) - 512)/8;
+    while(micros() < (curry + 95)){
       /* Do Nothing During This Time */
       /* This is to make sure there is a fixed */
       /* Sampling frequency for FFT to use */
+      //Serial.println(curry);
     }
+    //Serial.println("Test out");
   }
 }
 
@@ -197,7 +199,8 @@ void sampling() {
  */
 void deepFake() {
   for (int i = 0; i < numSams; i++) {
-    fake[i] = 0;
+    sams[i] = 0.0;
+    fake[i] = 0.0;
   }
 }
 
@@ -222,11 +225,14 @@ double fftFun() {
   PrintVector(sams, (numSams >> 1), SCL_FREQUENCY);
   
   double freq = FFT.MajorPeak(sams, numSams, samFreq);
-  //Serial.print(micros());
-  //Serial.print(" ");
-  //Serial.println(freq);
+  Serial.print(micros());
+  Serial.print(" ");
+  Serial.println(freq);
+  deepFake();
   return freq;
 }
+
+
 
 /**
  * Debug Printout
