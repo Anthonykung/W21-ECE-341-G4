@@ -184,7 +184,7 @@ void testLoop() {
 void sampling() {
   for (int i = 0; i < numSams; i++) {
     curry = micros();
-    sams[i] = analogRead(MCIN);
+    sams[i] = (analogRead(MCIN) - 512);
     while(micros() < (curry + 95)){
       /* Do Nothing During This Time */
       /* This is to make sure there is a fixed */
@@ -210,30 +210,29 @@ void deepFake() {
  * Use the FFT library
  */
 double fftFun() {
-  Serial.println("Data:");
-  PrintVector(sams, numSams, SCL_TIME);
+  //Serial.println("Data:");
+  //PrintVector(sams, numSams, SCL_TIME);
 
   FFT.Windowing(sams, numSams, FFT_WIN_TYP_HAMMING, FFT_FORWARD);
-  Serial.println("Weighed data:");
-  PrintVector(sams, numSams, SCL_TIME);
+  //Serial.println("Weighed data:");
+  //PrintVector(sams, numSams, SCL_TIME);
 
   FFT.Compute(sams, fake, numSams, FFT_FORWARD);
-  Serial.println("Computed Real values:");
-  PrintVector(sams, numSams, SCL_INDEX);
+  //Serial.println("Computed Real values:");
+  //PrintVector(sams, numSams, SCL_INDEX);
 
   FFT.ComplexToMagnitude(sams, fake, numSams);
-  Serial.println("Computed magnitudes:");
-  PrintVector(sams, (numSams >> 1), SCL_FREQUENCY);
+  //Serial.println("Computed magnitudes:");
+  //PrintVector(sams, (numSams >> 1), SCL_FREQUENCY);
 
   double freq;
   double magn;
-  FFT.MajorPeak(sams, numSams, samFreq, &freq, &magn);
+  FFT.MajorPeak(sams, numSams, samFreq, &magn, &freq);
   //Serial.print(micros());
-  Serial.print("Prominent Frequency: ");
-  Serial.println(freq);
-  Serial.print("Prominent Magnitude: ");
+  //Serial.print("Prominent Frequency: ");
+  //Serial.println(freq);
   Serial.println(magn);
-  //matlab();
+  //matlab(freq);
   deepFake();
   return freq;
 }
@@ -241,12 +240,15 @@ double fftFun() {
 /**
  * Matlab Serial
  */
-void matlab() {
-  for(int i = 0; i < (numSams / 2); i++) {
-    Serial.println(vData[i], 4);
-  }
+void matlab(double freq) {
+  Serial.print(freq);
+  //Serial.println(curry);
 }
 
+/**
+ * Debug
+ */
+void debug(double freq, double magn);
 
 /**
  * Debug Printout
