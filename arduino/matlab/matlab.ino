@@ -44,7 +44,6 @@ const int samFreq = 10500; /* Sampling Frequency (Hz) */
 unsigned int curry = 0;
 double sams[numSams];
 double fake[numSams];
-arduinoFFT FFT = arduinoFFT();
 
 /* Declare Functions */
 void allOff();
@@ -54,7 +53,8 @@ void sampling();
 void sampling2();
 double fftFun();
 void matlab();
-void ctrl();
+void ctrl(double FFT);
+void ledCtrl(int num);
 
 /* Initialization */
 void setup() {
@@ -70,12 +70,25 @@ void setup() {
 /* Main Function */
 void loop() {
   sampling2();
+  double FFT = Serial.read();
+  ctrl(FFT);
 }
 
-void ctrl() {
-  double FFT = fftFun();
+void ledCtrl(int num) {
+  allOff();
+  if (num) {
+    digitalWrite((2 + num), HIGH);
+  }
+  else {
+    allOff();
+  }
+}
+
+void ctrl(double FFT) {
   if (FFT < 248) {
     allOff();
+    digitalWrite(LED2, HIGH);
+    digitalWrite(LED7, HIGH);
   }
   /* C4 261.6256 */
   else if (FFT > 248 && FFT <= 275) {
@@ -119,6 +132,8 @@ void ctrl() {
   }
   else if (FFT > 550) {
     allOff();
+    digitalWrite(LED1, HIGH);
+    digitalWrite(LED8, HIGH);
   }
 }
 
