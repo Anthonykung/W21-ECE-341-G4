@@ -75,7 +75,7 @@ while 1 == 1
 
     % Update the Count value of the serialport object.
     loc = loc + 1;
-
+  
     % Print Data
     fprintf('Data: ');
     disp(data);
@@ -83,58 +83,7 @@ while 1 == 1
     % Call FFT
     % For every 128 samples
     % Sampling Frequency Set In Arduino
-    %fftFun(sams, arduinoObj, freq, time, timeI);
-    % Get FFT
-    Y = fft(sams);
-    forSNR = abs(Y);
-    freqs = 0:10500/128:10500/2;
-    freqs = freqs';
-    Y = Y(1:128/2+1);
-    res = abs(Y);
-    Y(1) = [];
-    [amp fI] = max(abs(Y));
-    val = freqs(fI);
-    freq(timeI) = val;
-
-    % Print Frequency
-    fprintf('Frequency: ');
-    disp(val);
-
-    % SNR
-    SNR = snr(forSNR, sams);
-    fprintf('SNR: ');
-    disp(SNR);
-
-    % Data
-    subplot(3, 1, 1);
-    plot(sams);
-    title('Data', 'FontSize', 15);
-    xlabel('Index', 'FontSize', 15);
-    ylabel('Data', 'FontSize', 15);
-
-    % FFT
-    subplot(3, 1, 2);
-    plot(freqs, res);
-    title('Amplitude VS Frequency', 'FontSize', 15);
-    xlabel('Frequency (Hz)', 'FontSize', 15);
-    ylabel('Amplitude', 'FontSize', 15);
-
-    % LED
-    write(arduinoObj, val, "double");
-
-    % Update Index
-    curry = timeI * 95;
-    curryI = timeI;
-    curryI = curryI + 1;
-    time(timeI + 1) = curry;
-    timeI = timeI + 1;
-
-    % Plot
-    subplot(3, 1, 3);
-    plot(freq, time);
-    title('Frequency VS Time', 'FontSize', 15);
-    xlabel('Time (us)', 'FontSize', 15);
-    ylabel('Frequency (Hz)', 'FontSize', 15);
+    fftFun(sams, arduinoObj, freq, time, timeI);
 
     % Reset Array
     sams = zeros;
@@ -161,11 +110,11 @@ function fftFun(data, arduinoObj, freq, time, timeI)
   [amp fI] = max(abs(Y));
   val = freqs(fI);
   freq(timeI) = val;
-
+  
   % Print Frequency
   fprintf('Frequency: ');
   disp(val);
-
+  
   % SNR
   SNR = snr(forSNR, data);
   fprintf('SNR: ');
@@ -191,7 +140,7 @@ function fftFun(data, arduinoObj, freq, time, timeI)
   % Update Index
   curry = timeI * 95;
   curryI = timeI;
-  curryI = curryI + 1;
+  curryI = curryI + 
   time(timeI + 1) = curry;
   timeI = timeI + 1;
 
