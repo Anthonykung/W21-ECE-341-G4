@@ -131,7 +131,7 @@ while 1 == 1
 
     % Plot
     subplot(3, 1, 3);
-    plot(freq, time);
+    plot(time, freq);
     title('Frequency VS Time', 'FontSize', 15);
     xlabel('Time (us)', 'FontSize', 15);
     ylabel('Frequency (Hz)', 'FontSize', 15);
