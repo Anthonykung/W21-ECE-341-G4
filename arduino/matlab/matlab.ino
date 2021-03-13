@@ -70,7 +70,8 @@ void setup() {
 /* Main Function */
 void loop() {
   sampling2();
-  double FFT = Serial.read();
+  double FFTD = Serial.readStringUntil('A').toFloat();
+  int FFT = (int) FFTD;
   ctrl(FFT);
 }
 

@@ -121,6 +121,7 @@ while 1 == 1
 
     % LED
     write(arduinoObj, val, "double");
+    write(arduinoObj, val, "double");
 
     % Update Index
     curry = timeI * 95;
@@ -186,7 +187,9 @@ function fftFun(data, arduinoObj, freq, time, timeI)
   ylabel('Amplitude', 'FontSize', 15);
 
   % LED
-  write(arduinoObj, val, "double");
+  str = sprintf('%.6f', val);
+  write(arduinoObj, str, "string");
+  write(arduinoObj, "A", "string");
 
   % Update Index
   curry = timeI * 95;

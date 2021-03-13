@@ -22,12 +22,6 @@ For most up to date README please refer to [GitHub Repo](https://github.com/Anth
 
 ## Features
 
-Does what the description said, runs the following lines on save:
-
-```bash
-git add {{ Current File }}
-git commit {{ Current File }} -m "Update at {{ Timestamp }}"
-```
 
 ## Installation
 
